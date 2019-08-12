@@ -9,40 +9,45 @@
     <script type="text/javascript" src="/jquery.js"></script>
     <script type="text/javascript" src="/chosen.js"></script>
     <link rel="stylesheet" type="text/css" href="/chosen.css">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+
 
 </head>
 
 <body>
-
-    <p1>Hello World</p1></br>
-    <form method="get" action='/pesquisar/' id="formSearch">
-        <select required name="NameCondos" class="NameCondos">
-            <option value="0"/>
-            <% if(typeof condos != 'undefined'){
+    <div class="container">
+        <div class="box">
+            <p1>Hello World</p1></br>
+            <form method="get" action='/pesquisar/' id="formSearch">
+                <select required name="NameCondos" class="NameCondos">
+                    <option value="0" />
+                    <% if(typeof condos != 'undefined'){
                     condos.forEach(condominium => {%>
-            <option value=<%= condominium.id %>> <%= condominium.name %></option>
+                    <option value=<%= condominium.id %>> <%= condominium.name %></option>
 
-            <%  })}  %>
-        </select>
-        <input type="submit" value="Buscar" />
-    </form>
-    <script>
-        document.querySelector('#formSearch').addEventListener('submit', (event) => {
-            let idSelect = document.querySelector('.NameCondos').value
-            event.preventDefault();
-            window.location = '/pesquisar/'+idSelect;
-        })
-    </script>
-    <form>
-        <% if(typeof condominium != 'undefined'){
+                    <%  })}  %>
+                </select>
+                <input type="submit" value="Buscar" />
+            </form>
+            <form>
+                <% if(typeof condominium != 'undefined'){
             condominium.forEach(cnd => { %>
-
-        Nome:<input type="text" value="<%= cnd.name %>" disabled='disabled' />
-        Endereço:<input type="text" value="<%= cnd.addres %>" disabled='disabled' />
-        CNPJ:<input type="text" value="<%= cnd.cnpj %>" disabled='disabled' />
-
-        <% })} %>
-    </form>
+                <table>
+                    <tr>
+                        <td>Nome:</td> <td><input type="text" value="<%= cnd.name %>" disabled='disabled' /></td>
+                    </tr>
+                    <tr>
+                        <td>Endereço:</td> <td><input type="text" value="<%= cnd.addres %>" disabled='disabled' /></td>
+                    </tr>
+                    <tr>
+                        <td>CNPJ:</td> <td><input type="text" value="<%= cnd.cnpj %>" disabled='disabled' /></td>
+                    </tr>
+                </table>
+                <% })} %>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="/style.js"></script>
 </body>
 
 </html>
