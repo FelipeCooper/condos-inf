@@ -36,28 +36,29 @@
                     </tr>
                 </table>
             </form>
-            <form class="condosForm" method="get"action="/cadastrar">
+            <form class="condosForm" method="post" action="/atualizar">
                 <% if(typeof condominium != 'undefined'){
                     condominium.forEach(cnd => { %>
                 <table>
                     <tr>
                         <td>Nome:</td>
-                        <td><input type="text" id="condosInput" value="<%= cnd.name %>" disabled="true" /></td>
+                        <td><input name="name" type="text" id="condosInput" value="<%= cnd.name %>" disabled /></td>
                     </tr>
                     <tr>
                         <td>Endereço:</td>
-                        <td><input type="text" id="condosInput" value="<%= cnd.addres %>" disabled /></td>
+                        <td><input name="addres" type="text" id="condosInput" value="<%= cnd.addres %>" disabled /></td>
                     </tr>
                     <tr>
                         <td>CNPJ:</td>
-                        <td><input type="text"  id="condosInput" value="<%= cnd.cnpj %>" disabled /></td>
+                        <td><input name="cnpj"type="text" id="condosInput" value="<%= cnd.cnpj %>" disabled /></td>
                     </tr>
                     <tr>
-                        <td><input type="submit" id="btnEdit" value="Editar"/></td>
+                        <td><input type="submit" id="btnEdit" value="Editar" /></td>
                         <td><button id="btnAdd">Adicionar novo</button></td>
                     </tr>
                 </table>
-                <% })} %>
+                <input name="id"type="text" style="display:none" id="condosInput" value="<%= cnd.id %>" disabled />
+                <% })} %>   
             </form>
         </div>
     </div>

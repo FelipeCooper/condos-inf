@@ -14,11 +14,11 @@ const CondominiumService = {
         console.log(result);
         return(result)
     },
-    async update(name,cnpj,addres){
-        const CondominiumNEW = new Condominium(name,cnpj,addres);
+    async update(name,cnpj,addres,id){
+        const CondominiumNEW = new Condominium(name,cnpj,addres,id);
         const result = await CondominiumRepository.update(CondominiumNEW);
         console.log(result);
-        return (result);
+        return (true);
     },
     async read(){
         return (await CondominiumRepository.read());

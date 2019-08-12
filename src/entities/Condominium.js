@@ -23,6 +23,9 @@ const Condominium = class Condominium {
     getAddres() {
         return this.addres;
     }
+    getID() {
+        return this.id;
+    }
 }
 
 module.exports = Condominium;

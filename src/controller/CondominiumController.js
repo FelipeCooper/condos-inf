@@ -18,9 +18,9 @@ routes.get('/pesquisar/:id', async function (req, res) {
         condominium: condominium
     })
 });
-routes.get('/atualizar', async function (req, res) {
-    console.log(req.body)
-    res.send('oi')
+routes.post('/atualizar', async function (req, res) {
+    let result = await CondominiumService.update(req.body.name, req.body.cnpj, req.body.addres, req.body.id );
+    res.redirect('/pesquisar/'+req.body.id)
 });
 
 module.exports = routes;

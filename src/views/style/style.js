@@ -9,15 +9,12 @@ document.querySelector('#formSearch').addEventListener('submit', (event) => {
 })
 let btnEdit = document.querySelector('#btnEdit');
 btnEdit.addEventListener('click', (event) => {
-    event.preventDefault();
     if (btnEdit.value != 'Salvar'){
+    event.preventDefault();
     let inputs = document.querySelectorAll("#condosInput")
     inputs.forEach((input) =>{
         input.removeAttribute('disabled');
     })
     btnEdit.value = 'Salvar'
-}else{
-    
-    window.location = '/atualizar'
 }
 })

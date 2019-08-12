@@ -27,10 +27,11 @@ module.exports = class CondominiumRepository {
         let con = await dbConnection();
         try {
             await con.query('START TRANSACTION');
-            await con.query(queries.updateCondominium[
+            await con.query(queries.update_condominium,[
                 Condominium.getName(),
                 Condominium.getCnpj(),
-                Condominium.getAddres()]);
+                Condominium.getAddres(),
+                Condominium.getID()]);
             await con.query("COMMIT");
             return true;
         } catch (ex) {
