@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Condominios</title>
+    <script type="text/javascript" src="/jquery.js"></script>
+    <script type="text/javascript" src="/chosen.js"></script>
+    <link rel="stylesheet" type="text/css" href="/chosen.css">
+
+</head>
+
+<body>
+
+    <p1>Hello World</p1></br>
+    <form method="get" action='/pesquisar/' id="formSearch">
+        <select required name="NameCondos" class="NameCondos">
+            <option value="0"/>
+            <% if(typeof condos != 'undefined'){
+                    condos.forEach(condominium => {%>
+            <option value=<%= condominium.id %>> <%= condominium.name %></option>
+
+            <%  })}  %>
+        </select>
+        <input type="submit" value="Buscar" />
+    </form>
+    <script>
+        document.querySelector('#formSearch').addEventListener('submit', (event) => {
+            let idSelect = document.querySelector('.NameCondos').value
+            event.preventDefault();
+            window.location = '/pesquisar/'+idSelect;
+        })
+    </script>
+    <form>
+        <% if(typeof condominium != 'undefined'){
+            condominium.forEach(cnd => { %>
+
+        Nome:<input type="text" value="<%= cnd.name %>" disabled='disabled' />
+        Endereço:<input type="text" value="<%= cnd.addres %>" disabled='disabled' />
+        CNPJ:<input type="text" value="<%= cnd.cnpj %>" disabled='disabled' />
+
+        <% })} %>
+    </form>
+</body>
+
+</html>

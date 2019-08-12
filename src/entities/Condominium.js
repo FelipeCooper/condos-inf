@@ -1,5 +1,5 @@
 const Condominium = class Condominium {
-    constructor(id, name, cnpj, addres) {
+    constructor(name, cnpj, addres, id) {
         this.id = id;
         this.name = name;
         this.cnpj = cnpj;
