@@ -17,3 +17,6 @@
     box-shadow: #000 2px 2px 1px;
     border-radius: 10px;
 }
+.condosForm input {
+    width: 100%;
+}

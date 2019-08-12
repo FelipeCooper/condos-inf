@@ -17,30 +17,44 @@
 <body>
     <div class="container">
         <div class="box">
-            <p1>Hello World</p1></br>
+            <div style="text-align: center"><b>Condominíos</b></br></div>
             <form method="get" action='/pesquisar/' id="formSearch">
-                <select required name="NameCondos" class="NameCondos">
-                    <option value="0" />
-                    <% if(typeof condos != 'undefined'){
-                    condos.forEach(condominium => {%>
-                    <option value=<%= condominium.id %>> <%= condominium.name %></option>
-
-                    <%  })}  %>
-                </select>
-                <input type="submit" value="Buscar" />
-            </form>
-            <form>
-                <% if(typeof condominium != 'undefined'){
-            condominium.forEach(cnd => { %>
                 <table>
                     <tr>
-                        <td>Nome:</td> <td><input type="text" value="<%= cnd.name %>" disabled='disabled' /></td>
+                        <td>
+                            <select required name="NameCondos" class="NameCondos">
+                                <option value="0" />
+                                <% if(typeof condos != 'undefined'){
+                                    condos.forEach(condominium => {%>
+                                <option value=<%= condominium.id %>> <%= condominium.name %></option>
+                                <%  })}  %>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="submit" value="Buscar" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <form class="condosForm" method="get"action="/cadastrar">
+                <% if(typeof condominium != 'undefined'){
+                    condominium.forEach(cnd => { %>
+                <table>
+                    <tr>
+                        <td>Nome:</td>
+                        <td><input type="text" id="condosInput" value="<%= cnd.name %>" disabled="true" /></td>
                     </tr>
                     <tr>
-                        <td>Endereço:</td> <td><input type="text" value="<%= cnd.addres %>" disabled='disabled' /></td>
+                        <td>Endereço:</td>
+                        <td><input type="text" id="condosInput" value="<%= cnd.addres %>" disabled /></td>
                     </tr>
                     <tr>
-                        <td>CNPJ:</td> <td><input type="text" value="<%= cnd.cnpj %>" disabled='disabled' /></td>
+                        <td>CNPJ:</td>
+                        <td><input type="text"  id="condosInput" value="<%= cnd.cnpj %>" disabled /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="btnEdit" value="Editar"/></td>
+                        <td><button id="btnAdd">Adicionar novo</button></td>
                     </tr>
                 </table>
                 <% })} %>

@@ -13,11 +13,14 @@ routes.get('/', async function (req, res) {
 routes.get('/pesquisar/:id', async function (req, res) {
     condos = await CondominiumService.read();
     condominium = await CondominiumService.readID(req.params.id);
-    res.render('pages/index',{
+    res.render('pages/index', {
         condos: condos,
-        condominium:condominium
+        condominium: condominium
     })
 });
-
+routes.get('/atualizar', async function (req, res) {
+    console.log(req.body)
+    res.send('oi')
+});
 
 module.exports = routes;
