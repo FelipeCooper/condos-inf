@@ -16,5 +16,7 @@ btnEdit.addEventListener('click', (event) => {
         input.removeAttribute('disabled');
     })
     btnEdit.value = 'Salvar'
+}else{
+    alert('Condominío Atualizado')
 }
 })
