@@ -3,7 +3,7 @@ const mysql = require('promise-mysql');
 const dbConfig = {
         user: "root",
         password: "password",
-        database: "condominios",
+        database: "condosAPI",
         host: "localhost",
         connectionLimit: 10
 }

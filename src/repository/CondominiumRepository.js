@@ -1,5 +1,5 @@
 const dbConnection = require('./DB/config/Connection');
-const queries = require('./DB/queries/CondosQueries');
+const queries = require('./DB/queries/CondominiumQueries');
 
 module.exports = class CondominiumRepository {
 
@@ -8,9 +8,8 @@ module.exports = class CondominiumRepository {
         try {
             await con.query("START TRANSACTION");
             let savedCondominium = await con.query(queries.insert_condominium, [
-                Condominium.getName(),
-                Condominium.getCnpj(),
-                Condominium.getAddres()]);
+                Condominium.values()
+            ]);
             await con.query("COMMIT");
             Condominium.id = savedCondominium.insertId;
             return Condominium;
@@ -28,10 +27,9 @@ module.exports = class CondominiumRepository {
         try {
             await con.query('START TRANSACTION');
             await con.query(queries.update_condominium,[
-                Condominium.getName(),
-                Condominium.getCnpj(),
-                Condominium.getAddres(),
-                Condominium.getID()]);
+                Condominium.values(),
+                Condominium.id
+            ]);
             await con.query("COMMIT");
             return true;
         } catch (ex) {

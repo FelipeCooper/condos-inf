@@ -3,27 +3,49 @@ const express = require('express');
 const routes = express.Router();
 const CondominiumService = require('../services/CondominiumService');
 
-routes.get('/', async function (req, res) {
+routes.get('/show', async function (req, res) {
     condos = await CondominiumService.read();
-    res.render('pages/procurar', {
-        condominium: undefined,
-        condos: condos
-    });
+    res.json(condos)
 });
-routes.get('/pesquisar/:id', async function (req, res) {
-    condos = await CondominiumService.read();
+
+routes.get('/search/:id', async function (req, res) {
     condominium = await CondominiumService.readID(req.params.id);
-    res.render('pages/procurar', {
-        condos: condos,
-        condominium: condominium
-    })
+    res.json(condominium)
 });
-routes.post('/atualizar', async function (req, res) {
-    let result = await CondominiumService.update(req.body.name, req.body.cnpj, req.body.addres, req.body.id );
-    res.redirect('/pesquisar/'+req.body.id)
+
+routes.post('/update', async function (req, res) {
+    let body = req.body;
+    let result = await CondominiumService.update(
+        body.name,
+        body.cnpj, 
+        body.addres,
+        body.id );
+    res.json(result)
 });
-routes.get('/registrar', async (req,res) =>{
-    res.render('pages/registrar')
-})
+
+routes.post('/register', async (req,res) =>{
+    let Condominium = req.body;
+    console.log(Condominium.cep)
+    let result = await CondominiumService.add(
+        Condominium.name,
+        Condominium.cnpj,
+        Condominium.addres,
+        Condominium.cep,
+        Condominium.city,
+        Condominium.constructionCompany,
+        Condominium.numberCondominium,
+        Condominium.numberOfUnits,
+        Condominium.bloco,
+        Condominium.numberOfBlocos,
+        Condominium.numberOfGarage,
+        Condominium.numberOfHb,
+        Condominium.numberOfShop,
+        Condominium.numberOfEmployee);
+    res.json(result);
+});
+routes.get('/delete/:id'), async (req,res) =>{
+    let result = await CondominiumService.delete(req.params.id);
+    res.json({delete:result})
+}
 
 module.exports = routes;
