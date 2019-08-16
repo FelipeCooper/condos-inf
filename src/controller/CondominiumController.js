@@ -25,22 +25,13 @@ routes.post('/update', async function (req, res) {
 
 routes.post('/register', async (req,res) =>{
     let Condominium = req.body;
-    console.log(Condominium.cep)
+    console.log(Condominium)
     let result = await CondominiumService.add(
         Condominium.name,
-        Condominium.cnpj,
-        Condominium.addres,
-        Condominium.cep,
-        Condominium.city,
-        Condominium.constructionCompany,
-        Condominium.numberCondominium,
-        Condominium.numberOfUnits,
-        Condominium.bloco,
-        Condominium.numberOfBlocos,
-        Condominium.numberOfGarage,
-        Condominium.numberOfHb,
-        Condominium.numberOfShop,
-        Condominium.numberOfEmployee);
+        Condominium.cnpj, 
+        Condominium.idAddress, 
+        Condominium.idConstructionCompany, 
+        Condominium.numberCondominium);
     res.json(result);
 });
 routes.get('/delete/:id'), async (req,res) =>{

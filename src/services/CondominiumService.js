@@ -3,8 +3,8 @@ const Condominium = require('../entities/Condominium');
 const CondominiumRepository = new repository()
 
 const CondominiumService = {
-    async add(name, cnpj, addres,cep, city, constructionCompany, NumberCondominium, numberOfUnits, bloco, numberOfBlocos, NumberOfGarage,NumberOfHb,NumberOfShop,NumberOfEmployee){
-        const CondominiumADD= new Condominium(name, cnpj, addres,cep, city, constructionCompany, NumberCondominium, numberOfUnits, bloco, numberOfBlocos, NumberOfGarage,NumberOfHb,NumberOfShop,NumberOfEmployee);
+    async add(name, cnpj, idAddress, idConstructionCompany, numberCondominium){
+        const CondominiumADD= new Condominium(name, cnpj, idAddress, idConstructionCompany, numberCondominium);
         let result = await CondominiumRepository.save(CondominiumADD);
         return (result)
     },
@@ -12,8 +12,8 @@ const CondominiumService = {
         const result = await CondominiumRepository.delete(id);
         return(result)
     },
-    async update(name, cnpj, addres,cep, city, constructionCompany, NumberCondominium, numberOfUnits, bloco, numberOfBlocos, NumberOfGarage,NumberOfHb,NumberOfShop,NumberOfEmployee,id){
-        const CondominiumNEW = new Condominium(name, cnpj, addres,cep, city, constructionCompany, NumberCondominium, numberOfUnits, bloco, numberOfBlocos, NumberOfGarage,NumberOfHb,NumberOfShop,NumberOfEmployee,id);
+    async update(name, cnpj, idAddress, idConstructionCompany, numberCondominium, id){
+        const CondominiumNEW = new Condominium(name, cnpj, idAddress, idConstructionCompany, numberCondominium, id);
         await CondominiumRepository.update(CondominiumNEW);
         return (CondominiumNEW);
     },

@@ -6,22 +6,13 @@ GO
 -- Create the table in the specified schema
 CREATE TABLE CondosAPI.condominium
 (
-    id INT NOT NULL PRIMARY KEY,
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     -- primary key column
     name VARCHAR(100) NOT NULL,
     cnpj INT(20) NOT NULL,
-    addres VARCHAR(150) NOT NULL,
-    cep VARCHAR(50) NOT NULL,
-    city VARCHAR(50) NOT NULL,
-    construction_company VARCHAR(100),
+    id_construction_company int(50),
     number_condominium int(50) NOT NULL,
-    number_of_units int(20),
-    bloco VARCHAR(5),
-    number_of_blocos int(20),
-    number_of_garage int(20),
-    number_of_hb int(20),
-    number_of_shop int(20),
-    number_of_employee int(10)
+    id_address int(50) NOT NULL,
     -- specify more columns here
 );
 GO
