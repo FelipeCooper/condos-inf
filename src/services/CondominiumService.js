@@ -12,8 +12,8 @@ const CondominiumService = {
         const result = await CondominiumRepository.delete(id);
         return(result)
     },
-    async update(name, cnpj, idAddress, idConstructionCompany, numberCondominium, id){
-        const CondominiumNEW = new Condominium(name, cnpj, idAddress, idConstructionCompany, numberCondominium, id);
+    async update(name, cnpj, numberCondominium, id){
+        const CondominiumNEW = new Condominium(name, cnpj, null, null, numberCondominium, id);
         await CondominiumRepository.update(CondominiumNEW);
         return (CondominiumNEW);
     },

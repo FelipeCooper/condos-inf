@@ -25,32 +25,13 @@ module.exports = {
     },
     //---//
 
-    async read() {
+    async read(idCondominium) {
         let con = await dbConnection();
         try {
             await con.query('START TRANSACTION');
-            let blocos = await con.query(queries.read_blocos);
+            let blocos = await con.query(queries.read_blocos,[idCondominium]);
             await con.query("COMMIT");
             return blocos;
-        }
-        catch (ex) {
-            await con.query("ROLLBACK");
-            console.log(ex);
-            throw ex;
-        }
-        finally {
-            await con.release();
-            await con.destroy();
-        }
-    },
-    //-----//
-    async readID(id) {
-        let con = await dbConnection();
-        try {
-            await con.query("START TRANSACTION");
-            let bloco = await con.query(queries.readID_blocos, [id]);
-            await con.query("COMMIT");
-            return bloco;
         }
         catch (ex) {
             await con.query("ROLLBACK");
@@ -66,12 +47,15 @@ module.exports = {
     async update(bloco) {
         let con = await dbConnection();
         try {
-            await con.query("START TRANSACTION");
+            console.log(bloco)
+            await con.query('START TRANSACTION');
             let updateBloco = await con.query(queries.update_blocos, [
-                bloco.values(),
+                bloco.NumberOfUnits,
+                bloco.NumberOfGarages,
+                bloco.NumberOfHobbyBox,
                 bloco.id
             ]);
-            await query("COMMIT");
+            await con.query("COMMIT");
             return updateBloco;
         }
         catch (ex) {

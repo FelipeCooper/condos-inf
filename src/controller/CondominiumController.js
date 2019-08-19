@@ -4,39 +4,44 @@ const routes = express.Router();
 const CondominiumService = require('../services/CondominiumService');
 
 routes.get('/show', async function (req, res) {
-    condos = await CondominiumService.read();
+    let condos = await CondominiumService.read();
     res.json(condos)
 });
 
 routes.get('/search/:id', async function (req, res) {
-    condominium = await CondominiumService.readID(req.params.id);
+    let condominium = await CondominiumService.readID(req.params.id);
     res.json(condominium)
 });
 
-routes.post('/update', async function (req, res) {
+routes.put('/update', async function (req, res) {
     let body = req.body;
     let result = await CondominiumService.update(
         body.name,
-        body.cnpj, 
-        body.addres,
-        body.id );
+        body.cnpj,
+        body.numberCondominium,
+        body.id);
     res.json(result)
 });
 
-routes.post('/register', async (req,res) =>{
+routes.post('/register', async (req, res) => {
     let Condominium = req.body;
     console.log(Condominium)
     let result = await CondominiumService.add(
         Condominium.name,
-        Condominium.cnpj, 
-        Condominium.idAddress, 
-        Condominium.idConstructionCompany, 
+        Condominium.cnpj,
+        Condominium.idAddress,
+        Condominium.idConstructionCompany,
         Condominium.numberCondominium);
     res.json(result);
 });
-routes.get('/delete/:id'), async (req,res) =>{
+routes.delete('/delete/:id', async (req, res) => {
     let result = await CondominiumService.delete(req.params.id);
-    res.json({delete:result})
-}
+    res.json({ delete: result })
+});
 
 module.exports = routes;
+
+
+
+
+

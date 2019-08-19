@@ -27,7 +27,9 @@ module.exports = class CondominiumRepository {
         try {
             await con.query('START TRANSACTION');
             await con.query(queries.update_condominium,[
-                Condominium.values(),
+                Condominium.name,
+                Condominium.cnpj,
+                Condominium.numberCondominium,
                 Condominium.id
             ]);
             await con.query("COMMIT");
