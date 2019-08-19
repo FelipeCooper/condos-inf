@@ -25,4 +25,4 @@ const CondominiumService = {
     }
     
 }
-module.exports = CondominiumService;
+module.exports = CondominiumService;  
