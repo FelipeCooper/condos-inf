@@ -11,8 +11,8 @@ app.use(express.static(__dirname + '/src/views/style'));
 
 //
 
-app.use('/api/condominium/', require('./src/controller/CondominiumController'));
-app.use('/api/blocos/', require('./src/controller/BlocosController'));
-
+app.use('/api/condominium/', require('./src/routes/CondominiumRoutes'));
+app.use('/api/blocos/', require('./src/routes/BlocosRoutes'));
+app.use('/api/address', require('./src/routes/AddressRoutes'))
 
 app.listen('3001');
